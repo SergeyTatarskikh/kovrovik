@@ -38,27 +38,26 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <header>
         <div class="header">
             <a class="burger"><span></span></a>
-            <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
+            <a href="<?= Yii::$app->urlManager->createUrl(['shop/index']) ?>" class="logo"><img src="images/logo.png" alt=""></a>
             <div class="h_text">Магазин ковров <br>с доставкой по всей <br>России</div>
             <div class="h_popup">
                 <div class="hp_close"></div>
-                <a href="index.html" class="logo_mob"><img src="images/logo.png" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['shop/index']) ?>" class="logo_mob"><img src="images/logo.png" alt=""></a>
                 <ul class="h_menu">
-                    <li><a href="cat.html">Каталог</a></li>
-                    <li><a href="services.html">Услуги</a></li>
-                    <li><a href="how_buy.html">Как купить</a></li>
-                    <li><a href="about.html">О компании</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/catalog']) ?>">Каталог</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/service']) ?>">Услуги</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/howbuy']) ?>">Как купить</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/about']) ?>">О компании</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/contact']) ?>">Контакты</a></li>
                 </ul>
                 <div class="h_contacts">
                     <a class="h_tel" href="tel:+74942466238">8(4942)46-62-38</a>
-                    <a href="mailto:pivnjuk.andrej@gmail.com" class="h_email">pivnjuk.andrej@gmail.com</a>
+                    <a href="mailto:pivnjuk.andrej@gmail.com" class="h_email">sergey.tatarskikh1@gmail.com</a>
                 </div>
             </div>
             <div class="h_btns">
-                <a href="cart.html" class="h_cart"></a>
-                <a href="" class="h_fav"></a>
-                <a href="" class="h_search"></a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['shop/basket']) ?>" class="h_cart"></a>
+
             </div>
         </div>
     </header>
@@ -68,22 +67,22 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <footer>
         <div class="footer">
             <div class="f_top">
-                <a href="index.html" class="f_logo"><img src="images/f_logo.png" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['shop/index']) ?>" class="f_logo"><img src="images/f_logo.png" alt=""></a>
                 <ul class="f_menu">
                     <li>Компания</li>
-                    <li><a href="">О компании</a></li>
-                    <li><a href="policy.html">Политика</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/about']) ?>">О компании</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/about']) ?>">политика</a></li>
                 </ul>
                 <ul class="f_menu">
                     <li>Как купить</li>
-                    <li><a href="">Условия оплаты</a></li>
-                    <li><a href="">Условия доставки</a></li>
-                    <li><a href="">Гарантия на товар</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/howbuy']) ?>">Условия оплаты</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/howbuy']) ?>">Условия доставки</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['shop/howbuy']) ?>">Гарантия на товар</a></li>
                 </ul>
                 <div class="f_contacts">
                     <div class="fc_head">Наши контакты</div>
                     <a class="f_tel" href="tel:+74942466238">8(4942)46-62-38</a> <br>
-                    <a href="mailto:pivnjuk.andrej@gmail.com" class="f_email">pivnjuk.andrej@gmail.com</a> <br>
+                    <a href="mailto:pivnjuk.andrej@gmail.com" class="f_email">sergey.tatarskikh1@gmail.com</a> <br>
                     <div class="f_address">г. Кострома, мкрн. Давыдовский-1, д. 2а магазин Ковровый Ряд</div>
                 </div>
             </div>

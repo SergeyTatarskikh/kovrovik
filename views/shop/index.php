@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Ковровый ряд';
 ?>
@@ -20,7 +21,7 @@ $this->title = 'Ковровый ряд';
             <div class="ms_block">
                 <div class="ms_head">Большой выбор ковров на любой вкус</div>
                 <div class="ms_text">У нас вы сможете найти ковры разнообразных текстур, расцветок и размеров, чтобы создать идеальную обстановку в вашем доме или офисе</div>
-                <a href="" class="ms_btn">В каталог</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['shop/catalog']) ?>" class="ms_btn">В каталог</a>
             </div>
         </div>
     </div>
@@ -30,7 +31,7 @@ $this->title = 'Ковровый ряд';
             <div class="ms_block">
                 <div class="ms_head">Большой выбор ковров на любой вкус</div>
                 <div class="ms_text">У нас вы сможете найти ковры разнообразных текстур, расцветок и размеров, чтобы создать идеальную обстановку в вашем доме или офисе</div>
-                <a href="" class="ms_btn">В каталог</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['shop/catalog']) ?>" class="ms_btn">В каталог</a>
             </div>
         </div>
     </div>
@@ -40,7 +41,7 @@ $this->title = 'Ковровый ряд';
             <div class="ms_block">
                 <div class="ms_head">Большой выбор ковров на любой вкус</div>
                 <div class="ms_text">У нас вы сможете найти ковры разнообразных текстур, расцветок и размеров, чтобы создать идеальную обстановку в вашем доме или офисе</div>
-                <a href="" class="ms_btn">В каталог</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['shop/catalog']) ?>" class="ms_btn">В каталог</a>
             </div>
         </div>
     </div>
@@ -50,7 +51,7 @@ $this->title = 'Ковровый ряд';
 <div class="content">
 
     <div class="main_2">
-        <a href="cat.html" class="m2_block">
+        <a href="<?= Yii::$app->urlManager->createUrl(['shop/catalog']) ?>" class="m2_block">
             <img src="images/m2b_bg.jpg" alt="" class="m2b_bg">
             <img src="images/m2b_1.svg" alt="" class="m2b_icon">
             <span class="m2b_content">
@@ -58,7 +59,7 @@ $this->title = 'Ковровый ряд';
 			<span class="m2b_text">В этом разделе вы сможете выбрать ковер на любой вкус<span> и кошелек - от классических ориентальных до современных моделей</span></span>
 		</span>
         </a>
-        <a href="cat.html" class="m2_block">
+        <a href="<?= Yii::$app->urlManager->createUrl(['shop/catalog']) ?>" class="m2_block">
             <img src="images/m2b_bg.jpg" alt="" class="m2b_bg">
             <img src="images/m2b_2.svg" alt="" class="m2b_icon">
             <span class="m2b_content">
@@ -69,11 +70,9 @@ $this->title = 'Ковровый ряд';
     </div>
 
     <div class="main_cat">
-        <div class="c_head">Каталог</div>
+        <div class="c_head">Популярное</div>
         <div class="mc_filters">
-            <span class="mcf_item current">Распродажа</span>
-            <span class="mcf_item">Новинка</span>
-            <span class="mcf_item">Хит</span>
+
         </div>
         <div class="m_cat_items">
             <?php if (!empty($products)) {
@@ -86,21 +85,21 @@ $this->title = 'Ковровый ряд';
                             <div class="mci_sale">Распродажа</div>
                         </div>
 
-                        <a href="good.html" class="mci_link">
-                            <?= Html::img("@web/{$product -> image}")?>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['shop/good', 'id' => $product->id_product]) ?>" class="mci_link">
+                            <?= Html::img("@web/{$product->image}")?>
                             <?= $product->name?>
                             <span class="mci_price"><?= $product->price?> руб./шт<del><?= $product->lastprice?></del></span>
-
                             <span class="mci_available">
-                                <?php if ($product->existence == 1): ?>
-                                        Есть в наличии
-                                <?php else: ?>
-                                        Нет в наличии
-                                <?php endif; ?>
+                            <?php if ($product->existence == 1): ?>
+                                Есть в наличии
+                            <?php else: ?>
+                                Нет в наличии
+                            <?php endif; ?>
                             </span>
+                        </a>
 
 
-                        </a><a href="" class="mci_more">Подробнее</a>
+                        <a href="" class="mci_more">Подробнее</a>
                     </div>
 
                     <div class="mci_popup">
@@ -118,7 +117,11 @@ $this->title = 'Ковровый ряд';
                                     <input type="text" value="1">
                                     <a class="plus">+</a>
                                 </div>
-                                <div class="mci_in_cart">В корзину</div>
+                                 <div class="mci_in_cart"
+                                      data-url="<?= Yii::$app->urlManager->createUrl(['shop/addbasket']) ?>"
+                                        data-id="<?=$product->id_product?>"
+                                        data-amount="">В корзину</div>
+
                             </div>
                         </div>
                     </div>
@@ -206,35 +209,27 @@ $this->title = 'Ковровый ряд';
 
 </div> <!-- end of content -->
 
-<div class="prev_watched_wrap">
+<div class="prev_watched_wrap mt">
     <div class="content">
         <div class="c_head">Рекомендуем: </div>
         <div class="prev_slider">
+            <?php if (!empty($products)) {
+            foreach($products as $product): ?>
+                <div>
+                    <a href="<?= Yii::$app->urlManager->createUrl(['shop/good', 'id' => $product->id_product]) ?>" class="ps_content">
+                        <?= Html::img("@web/{$product->image}", ['style' => 'width: 30%;']) ?>
+                        <span class="ps_name"><?= $product->name ?></span>
+                        <span class="ps_price"><?= $product->price ?> руб/шт</span>
+                    </a>
 
-            <div>
-                <a href="good.html" class="ps_content">
-                    <img src="images/ps_1.jpg" alt="">
-                    <span class="ps_name">Ковер Catrin VC3027-V102 Прямоугольник</span>
-                    <span class="ps_price">12 375 руб./шт</span>
-                </a>
-            </div>
-
-            <div>
-                <a href="good.html" class="ps_content">
-                    <img src="images/ps_1.jpg" alt="">
-                    <span class="ps_name">Ковер Catrin VC3027-V102 Прямоугольник</span>
-                    <span class="ps_price">12 375 руб./шт</span>
-                </a>
-            </div>
-
-            <div><a href="good.html" class="ps_content empty"></a></div>
-            <div><a href="good.html" class="ps_content empty"></a></div>
-            <div><a href="good.html" class="ps_content empty"></a></div>
-            <div><a href="good.html" class="ps_content empty"></a></div>
-            <div><a href="good.html" class="ps_content empty"></a></div>
-            <div><a href="good.html" class="ps_content empty"></a></div>
-            <div><a href="good.html" class="ps_content empty"></a></div>
+                </div>
+            <?php endforeach;
+            } ?>
 
         </div>
     </div>
 </div>
+
+
+
+
